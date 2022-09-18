@@ -32,6 +32,13 @@ function calculateResult(calculationType){
 	const enteredNumber = getUserNumberInput();
 	const initialResult = currentResult;
 
+	//check if calculation type (button pressed) is valid. The code after will not run if false.
+	//!enteredNumber means if the number is false, or 0. in bool, 0=false.
+	if (calculationType !== 'ADD' && calculationType !== 'SUBTRACT' && calculationType !== 'Multiply' && calculationType !== 'DIVIDE' || !enteredNumber){
+		console.log('Calculation not caught, please try again');
+		return;
+	}
+
 	if (calculationType === 'ADD'){
 		currentResult += enteredNumber;
 		mathOperator = '+';
@@ -41,7 +48,7 @@ function calculateResult(calculationType){
 	} else if (calculationType === 'MULTIPLY'){
 		currentResult *= enteredNumber;
 		mathOperator = '*';
-	} else {
+	} else if (calculationType === 'DIVIDE'){
 		currentResult /= enteredNumber;
 		mathOperator = '/';
 	}
@@ -51,6 +58,7 @@ function calculateResult(calculationType){
 	//write to object log
 	writeToLog(calculationType, initialResult, enteredNumber, currentResult);
 }
+
 
 function add() {
 calculateResult('ADD');
